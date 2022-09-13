@@ -5,13 +5,18 @@ import java.util.List;
 
 public class Customer {
 
-    private Cart cart;
-    private String customerID;
-    private List<History> history;
+    private String email;
+    private String password;
+    private String Userid;
+    private List<List<History>> history;
 
 
-    public Customer() {
-        this.cart = new Cart();
-        history = new ArrayList<>();
+    public Customer(String email, String password, String userid) {
+        this.email = email;
+        this.password = password;
+        Userid = userid;
+
+        history = new ArrayList<List<History>>();
+
     }
 }

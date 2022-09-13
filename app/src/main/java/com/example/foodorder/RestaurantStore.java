@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
 import java.util.List;
 import  com.example.foodorder.RestaurnatSchema.RestaurantTable;
 public class RestaurantStore {
@@ -14,6 +15,7 @@ public class RestaurantStore {
         this.db = new RestaurantDbHelper( // Open database
                 context.getApplicationContext()
         ).getWritableDatabase();
+        restaurantList = new ArrayList<>();
     }
     public List<Restaurant>getFoodList(String restaurantName)
     {
