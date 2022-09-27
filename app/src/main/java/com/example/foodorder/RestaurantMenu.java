@@ -26,9 +26,13 @@ public class RestaurantMenu extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private ButtonViewModel model;
     public RestaurantMenu() {
         // Required empty public constructor
+    }
+    public RestaurantMenu(ButtonViewModel model) {
+        // Required empty public constructor
+        this.model = model;
     }
 
     /**
@@ -66,6 +70,9 @@ public class RestaurantMenu extends Fragment {
         RecyclerView rv = view.findViewById(R.id.container_restaurant);
         RestaurantAdapter adapter = new RestaurantAdapter();
         rv.setLayoutManager( new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
+        model.but1.setText("1");
+        model.but2.setText("2");
+        model.but3.setText("3");
         return view;
     }
 

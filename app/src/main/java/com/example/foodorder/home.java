@@ -31,9 +31,13 @@ public class home extends Fragment {
     private String mParam1;
     private String mParam2;
     private List <Food> data;
-    public home (List<Food> foodList)
+    private ButtonViewModel model;
+    private CartViewModel cart;
+    public home(List<Food> foodList, ButtonViewModel model, CartViewModel cart)
     {
         data = foodList;
+        this.model = model;
+        this.cart = cart;
     }
     public home() {
         // Required empty public constructor
@@ -72,18 +76,36 @@ public class home extends Fragment {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_home, container, false);
         RecyclerView rv = view.findViewById(R.id.container_home);
-        HomeAdapter adapter = new HomeAdapter(data);
+        HomeAdapter adapter = new HomeAdapter(data,cart);//set adapter
         rv.setAdapter(adapter);
-        rv.setLayoutManager( new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
+        rv.setLayoutManager( new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));//set fragment layout
+
+        model.but1.setText("Restaurant");
+        model.but2.setText("Home");
+        model.but3.setText("Cart");
+        model.but2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                model.ReplaceFrag(new home(data, model, cart));
+            }
+        });
+        model.but1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                model.ReplaceFrag(new RestaurantMenu(model));
+            }
+        });
         return view;
     }
     private class HomeAdapter extends RecyclerView.Adapter<HomeHolder>
     {
 
         List<Food> data;
-
-        public HomeAdapter(List<Food> data) {
+        CartViewModel cart;
+        int position1;
+        public HomeAdapter(List<Food> data, CartViewModel cart) {
             this.data = data;
+            this.cart  = cart;
         }
 
         @NonNull
@@ -92,12 +114,12 @@ public class home extends Fragment {
             LayoutInflater li = LayoutInflater.from(parent.getContext());
             View view = li.inflate(R.layout.food_list_layout,parent,false);
             HomeHolder homeHolder = new HomeHolder(view);
-
             return homeHolder;
         }
 
         @Override
         public void onBindViewHolder(@NonNull HomeHolder holder, int position) {
+            holder.bind(this, cart);
             holder.price.setText(String.valueOf(data.get(position).getPrice()));
             holder.name.setText(String.valueOf(data.get(position).getName()));
             holder.description.setText(String.valueOf(data.get(position).getDescription()));
@@ -125,8 +147,23 @@ public class home extends Fragment {
             price = itemView.findViewById(R.id.price);
             image = itemView.findViewById(R.id.foodImage);
 
-
         }
+        public  void bind(HomeAdapter adapter, CartViewModel cart)
+        {
+            //Add food to cart when item is clicked
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(getAdapterPosition() == RecyclerView.NO_POSITION)
+                    {
+                        return;
+                    }
+
+                    cart.cart.addFood(adapter.data.get(getAdapterPosition()));
+                }
+            });
+        }
+
 
     }
 }
