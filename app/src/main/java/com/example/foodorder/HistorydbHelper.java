@@ -19,7 +19,7 @@ public class HistorydbHelper extends SQLiteOpenHelper {
                 HistorySchema.HistoryTable.Cols.NAME + " TEXT, " +
                 HistorySchema.HistoryTable.Cols.USERID + " TEXT, " +
                 HistorySchema.HistoryTable.Cols.ORDERID + " TEXT, " +
-                HistorySchema.HistoryTable.Cols.TIME + " TIME, " +
+                HistorySchema.HistoryTable.Cols.TIME + " TEXT, " +
                 HistorySchema.HistoryTable.Cols.PRICE + " REAL, " +
                 HistorySchema.HistoryTable.Cols.FOODIMAGE+ " INTEGER)");
 

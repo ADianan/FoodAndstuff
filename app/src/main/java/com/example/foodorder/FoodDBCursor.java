@@ -14,6 +14,6 @@ public class FoodDBCursor extends CursorWrapper {
         String name = getString(getColumnIndex(FoodTable.Cols.NAME));
         String description = getString(getColumnIndex(FoodTable.Cols.DESCR));
         int image = getInt(getColumnIndex(FoodTable.Cols.FOODIMAGE));
-        return new Food(name, description, price, image);
+        return new Food("yo",name, description, price, image);
     }
 }

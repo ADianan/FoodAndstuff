@@ -1,5 +1,6 @@
 package com.example.foodorder;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,7 +18,7 @@ public class CustomerStore {
     }
     public Customer getCustomer(String email,String password)
     {
-        String clause = "WHERE email =" +"'" + email +"'" +" AND " +"password = " +  password;
+        String clause = "WHERE email =" +"'" + email +"'" +" AND " +"password = " +"'" + password +"'";
         Cursor cursor  =db.query(CustomerTable.NAME,null,clause,null,null,null,null);
         CustomerCursor foodDBCursor = new CustomerCursor(cursor);
         try {
@@ -32,5 +33,14 @@ public class CustomerStore {
             cursor.close();
         }
         return customer;
+    }
+
+    public void addCustomer(Customer customer)
+    {
+        ContentValues cv = new ContentValues();
+        cv.put(CustomerTable.Cols.EMAIL, customer.getEmail());
+        cv.put(CustomerTable.Cols.PASSWORD, customer.getPassword());
+        cv.put(CustomerTable.Cols.USERID, customer.getUserid());
+        db.insert(CustomerTable.NAME,null,cv);
     }
 }

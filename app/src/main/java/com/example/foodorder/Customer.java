@@ -19,4 +19,16 @@ public class Customer {
         history = new ArrayList<List<History>>();
 
     }
+
+    public String getUserid() {
+        return Userid;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 }

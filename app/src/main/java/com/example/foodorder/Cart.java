@@ -5,19 +5,13 @@ import java.util.List;
 
 public class Cart {
 
-    private List<Food> bucket;
-    public Cart()
+    private   Food food;
+    private int amount;
+    public Cart(Food newFood, int newAmount)
     {
-        bucket = new ArrayList<>();
+        food = newFood;
+        amount = newAmount;
     }
 
 
-    public List<Food> getBucket() {
-        return bucket;
-    }
-
-    public void addFood(Food food) {
-        bucket.add(food);
-
-    }
 }

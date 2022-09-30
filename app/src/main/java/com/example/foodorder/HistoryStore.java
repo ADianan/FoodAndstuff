@@ -1,5 +1,6 @@
 package com.example.foodorder;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,9 +18,9 @@ public class HistoryStore {
         ).getWritableDatabase();
         history = new ArrayList<List<History>>();
     }
-    public List<List<History>>  getCustomer(String email,String password)
+    public List<List<History>>  getCustomer(String userId)
     {
-        String clause = "WHERE email =" +"'" + email +"'" +" AND " +"password = " +  password;
+        String clause = "WHERE user_id =" +"'" + userId +"'";
         List<History> orderHistory = new ArrayList<>();
         Cursor cursor  =db.query(customerSchema.CustomerTable.NAME,null,clause,null,null,null,null);
         HistoryCursor foodDBCursor = new HistoryCursor(cursor);
@@ -35,5 +36,16 @@ public class HistoryStore {
             cursor.close();
         }
         return history;
+    }
+    public void addCustomer(History history,Customer customer)
+    {
+        ContentValues cv = new ContentValues();
+        cv.put(HistorySchema.HistoryTable.Cols.ORDERID, history.orderId);
+        cv.put(HistorySchema.HistoryTable.Cols.TIME, String.valueOf(history.dateOfPurchase));
+        cv.put(HistorySchema.HistoryTable.Cols.PRICE, history.purchasedFood.getPrice());
+        cv.put(HistorySchema.HistoryTable.Cols.FOODIMAGE, history.purchasedFood.getImage());
+        cv.put(HistorySchema.HistoryTable.Cols.NAME, history.purchasedFood.getName());
+        cv.put(HistorySchema.HistoryTable.Cols.USERID, customer.getUserid() );
+        db.insert(HistorySchema.HistoryTable.NAME,null,cv);
     }
 }

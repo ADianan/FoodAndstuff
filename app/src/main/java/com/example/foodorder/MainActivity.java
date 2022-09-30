@@ -3,31 +3,118 @@ package com.example.foodorder;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 
+import com.opencsv.CSVParserWriter;
+import com.opencsv.CSVReader;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private  static boolean ADDTODATABASE = true;
+    //when adding new data please remove the old data sets
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        List<Food> list = new ArrayList<Food>();//get food from database
-        List<Food> rand = new ArrayList<Food>();
-        for(int i = 0;i<20;i++)
+        /*if(true)
         {
-            list.add(new Food("food"+i,"foodDescription"+i,Double.valueOf(i+1),0));
-        }
+            ReadFood();
+            ReadRestaurant();
+        }*/
+
         CartViewModel cart = new CartViewModel();
         Button but1 = findViewById(R.id.button);
         Button but2 = findViewById(R.id.button2);
         Button but3 = findViewById(R.id.button3);
         FragmentManager fm = getSupportFragmentManager();
         ButtonViewModel model = new ButtonViewModel(but1,but2,but3, fm);
-        model.ReplaceFrag(new home(list, model, cart));
+        model.ReplaceFrag(new home(model, cart));
+        but2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                model.ReplaceFrag(new home(model, cart));
+            }
+        });
+        but1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               /* model.ReplaceFrag(new RestaurantMenu(model));*/
+                Food food = new Food("kfc","burge","what",2.12,getResources().getIdentifier("crust","drawable",getPackageName()));
+                FoodAmountDialog dialog = new FoodAmountDialog();
+                dialog.createNew(MainActivity.this,cart,food);
+            }
+        });
+        but3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                model.ReplaceFrag(new fragmen_cart(cart));
+            }
+        });
+
 
     }
+
+    private void ReadFood()
+    {
+        try{
+            List<Food> food = new ArrayList<>();
+            FoodStore store = new FoodStore();
+            store.load(this);
+            InputStream stream = getAssets().open("FoodData.csv");
+            CSVReader reader = new CSVReader(new InputStreamReader(stream));
+            String [] nextline;
+            String view = "";
+            while((nextline = reader.readNext())!= null)
+            {
+                for(int i=0; i<nextline.length; i++)
+                {
+                    int image = getResources().getIdentifier(nextline[3],"drawable",getPackageName());
+                    double price = Double.valueOf(nextline[2]);
+                    //food.add(new Food(nextline[0],nextline[1],price,image));
+                }
+                view = "";
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void ReadRestaurant()
+    {
+        try{
+            List<Restaurant> restaurantList = new ArrayList<>();
+            RestaurantStore store = new RestaurantStore();
+            store.load(this);
+
+            InputStream stream = getAssets().open("RestaurantData.csv");
+            CSVReader reader = new CSVReader(new InputStreamReader(stream));
+            String [] nextline;
+            while((nextline = reader.readNext())!= null)
+            {
+                restaurantList.add(new Restaurant(nextline[0],getResources().getIdentifier(nextline[1],"drawable",getPackageName())));
+                Log.d("myapp", String.valueOf(getResources().getIdentifier(nextline[1],"drawable",getPackageName())));
+            }
+            store.addRestaurant(restaurantList);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

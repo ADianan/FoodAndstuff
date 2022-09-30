@@ -30,12 +30,11 @@ public class home extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private List <Food> data;
     private ButtonViewModel model;
     private CartViewModel cart;
-    public home(List<Food> foodList, ButtonViewModel model, CartViewModel cart)
+    private FoodStore foodData;
+    public home( ButtonViewModel model, CartViewModel cart)
     {
-        data = foodList;
         this.model = model;
         this.cart = cart;
     }
@@ -64,10 +63,8 @@ public class home extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        foodData = new FoodStore();
+        foodData.load(getActivity());
     }
 
     @Override
@@ -76,25 +73,11 @@ public class home extends Fragment {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_home, container, false);
         RecyclerView rv = view.findViewById(R.id.container_home);
-        HomeAdapter adapter = new HomeAdapter(data,cart);//set adapter
+        HomeAdapter adapter = new HomeAdapter(foodData.getHomeFood(),cart);//set adapter
         rv.setAdapter(adapter);
         rv.setLayoutManager( new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));//set fragment layout
 
-        model.but1.setText("Restaurant");
-        model.but2.setText("Home");
-        model.but3.setText("Cart");
-        model.but2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                model.ReplaceFrag(new home(data, model, cart));
-            }
-        });
-        model.but1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                model.ReplaceFrag(new RestaurantMenu(model));
-            }
-        });
+
         return view;
     }
     private class HomeAdapter extends RecyclerView.Adapter<HomeHolder>
@@ -158,8 +141,8 @@ public class home extends Fragment {
                     {
                         return;
                     }
-
-                    cart.cart.addFood(adapter.data.get(getAdapterPosition()));
+                    FoodAmountDialog dialog = new FoodAmountDialog();
+                    dialog.createNew(getActivity(),cart,adapter.data.get(getAdapterPosition()));
                 }
             });
         }

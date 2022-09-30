@@ -9,4 +9,12 @@ public class Restaurant
         this.name = name;
         this.imageid = imageid;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getImageid() {
+        return imageid;
+    }
 }

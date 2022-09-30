@@ -1,8 +1,10 @@
 package com.example.foodorder;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import com.example.foodorder.RestaurnatSchema.RestaurantTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,5 +36,16 @@ public class RestaurantStore {
             cursor.close();
         }
         return restaurantList;
+    }
+    public void addRestaurant(List<Restaurant> restaurantList)
+    {
+        for(Restaurant restaurant : restaurantList)
+        {
+
+            ContentValues cv = new ContentValues();
+            cv.put(RestaurantTable.Cols.RESTAURANTNAME, restaurant.getName());
+            cv.put(RestaurantTable.Cols.IMAGE, restaurant.getImageid());
+            db.insert(FoodSchema.FoodTable.NAME,null,cv);
+        }
     }
 }

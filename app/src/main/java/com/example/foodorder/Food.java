@@ -6,8 +6,10 @@ public class Food {
     private String description;
     private   double price;
     private int image;
+    private String Restaurantid;
 
-    public Food(String name, String description, double price, int image) {
+    public Food(String restaurantid,String name, String description, double price, int image) {
+        Restaurantid = restaurantid;
         this.name = name;
         this.description = description;
         this.price = price;
