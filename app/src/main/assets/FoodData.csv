@@ -1,69 +1,69 @@
-Domino's,Chicken & Camembert,22.5,chickenandcamembert
-Domino's,BBQ Chicken & Rasher Bacon,22.1,bbqchickenrasherbacon
-Domino's,Garlic Chicken & Bacon Aioli,22,garlicchickenbaconaioli
-Domino's,Peri Peri Chicken,21.3,periperichicken
-Domino's,Indi Chicken Tikka,19.6,indichickentikka
-Domino's,Chicken Supreme,19.1,chickensupreme
-Domino's,Loaded Supreme,22.5,loadedsupreme
-Domino's,mega meatlovers,22.1,megameatlovers
-Pizza Hut,supreme,19.6,supreme
-Pizza Hut,double bacon cheesburger,19.6,doublebaconcheeseburger
-Pizza Hut,fire Breather,19.6,firebreather
-Pizza Hut,Loaded Pepperoni,18,loadedpepperoni
-Pizza Hut,Godfather,18,godfather
-Pizza Hut,Hawaiian,18,hawaiian
-Pizza Hut,3 Meats,18,threemeats
-Pizza Hut,Ham and cheese,16,hamandcheese
-Pizza Hut,Pepperoni,16,pepperoni
-Crust,Peri Peri Chicken,26,periperichicken
-Crust,Crust Supreme,26,crustsupreme
-Crust,Meat Delux,26,meatdelux
-Crust,Vegetarian Supreme,26,vegetariansupreme
-Crust,Pepperoni,26,pepperoni
-Crust,BBQ Chicken,26,bbqchicken
-Han Palace,combination fried rice,18.8,combinationfriedrice
-Han Palace,sweet and sour pork,20.8,sweetandsourpork
-Han Palace,squid with chilli spiced salt,22.8,squidwithchillispicedsalt
-Han Palace,honey king prawns,29.8,honeykingprawns
-Han Palace,Hong Kong Bay King Prawns,29.8,hongkongbaykingprawns
-Han Palace,Sweet and Sour Seafood,29.8,sweetandsourseafoodcombination
-Mae Khong Thai Restaurant,Thai Style Special Fried Rice,15.9,thaistylespecialfriedrice
-Mae Khong Thai Restaurant,Green Curry,20.9,greeycurry
-Mae Khong Thai Restaurant,Blanket Prawns,13,blanketprawns
-Mae Khong Thai Restaurant,Red Curry,20.9,red curry
-Pachi Pachi,Mee Goreng,16,meegoreng
-Pachi Pachi,Pachi Style Curry Laksa,16,pachistylecurrylaksa
-Pachi Pachi,Angry Birds,40,angrybirds
-Pachi Pachi,Orange Beef,26,orangebeef
-Pachi Pachi,Prawn and Lime,28,prawnandlime
-Pachi Pachi,Yuzu Mayo Tempura Prawns,27,yuzumayotempuraprawn
-Pachi Pachi,Salted egg yolk Crispy Eggplant Chips,16.5,saltedeggyolkcrispyeggplantchips
-Chatime,Peach Green,9,peachgreen
-Chatime,Peach Black,9,peachblack
-Chatime,Mango,9,mango
-Chatime,Passionfruit Green,9,passionfruitgreen
-Chatime,Pop It Like It's Peach,10,popitpeach
-McDonald's,Classic Angus,10.3,classicangus
-McDonald's,BBQ Bacon Angus,10.9,bbqbaconangus
-McDonald's,Big Mac,7.8,bigmac
-McDonald's,Quarter Pounder,7.9,quarterpounder
-McDonald's,Double Quarter Pounder,10.1,doublequarterpounder
-McDonald's,Cheeseburger,4.1,cheeseburger
-McDonald's,Double Cheeseburger,5.1,doublecheeseburger
-McDonald's,Triple Cheeseburger,6.1,triplecheeseburger
-McDonald's,Hamburger,4,hamburger
-Pretzel Perth,Cheese and Pepperoni,10.5,cheeseandpepperoni
-Pretzel Perth,Cheese and Garlic,9,cheeseandgarlic
-Pretzel Perth,Biscoff Crunch,11.5,biscoffcrunch
-Pretzel Perth,Nutella,10.5,nutella
-Pretzel Perth,Salted,8,salted
-Dessert Garden,Signature Iced Herbal Jelly,14.5,signatureicedherbaljelly
-Dessert Garden,Mango Coconut Sago,13.9,mangococonutsago
-Dessert Garden,Fresh Mango Purple Rice,13.9,freshmangopurplerice
-Dessert Garden,Duo Condensed Milk Crushed Iced,23.3,duocondensedmilkcrushediced
-Dessert Garden,Taro Ball and Pearl Tofu Pudding,14.9,taroballandpearltofupudding
-Hermanos En Cantina,Brisket Nachos,17,brisketnachos
-Hermanos En Cantina,Chicken Quesedilla,10,chickenquesedilla
-Hermanos En Cantina,Triple H,9.5,tripleh
-Hermanos En Cantina,Chips,8,chips
-Hermanos En Cantina,Texas Red,9,texasred
+Domino's,Chicken & Camembert,pizza1,22.5,chickenandcamembert
+Domino's,BBQ Chicken & Rasher Bacon,pizza2,22.1,bbqchickenrasherbacon
+Domino's,Garlic Chicken & Bacon Aioli,pizza3,22,garlicchickenbaconaioli
+Domino's,Peri Peri Chicken,pizza4,21.3,periperichicken
+Domino's,Indi Chicken Tikka,pizza5,19.6,indichickentikka
+Domino's,Chicken Supreme,pizza6,19.1,chickensupreme
+Domino's,Loaded Supreme,pizza7,22.5,loadedsupreme
+Domino's,mega meatlovers,pizza8,22.1,megameatlovers
+Pizza Hut,supreme,cheap pizza1,19.6,supreme
+Pizza Hut,double bacon cheesburger,cheap pizza2,19.6,doublebaconcheeseburger
+Pizza Hut,fire Breather,cheap pizza3,19.6,firebreather
+Pizza Hut,Loaded Pepperoni,cheap pizza4,18,loadedpepperoni
+Pizza Hut,Godfather,cheap pizza5,18,godfather
+Pizza Hut,Hawaiian,cheap pizza6,18,hawaiian
+Pizza Hut,3 Meats,cheap pizza7,18,threemeats
+Pizza Hut,Ham and cheese,cheap pizza8,16,hamandcheese
+Pizza Hut,Pepperoni,cheap pizza9,16,pepperoni
+Crust,Peri Peri Chicken,fancy pizza1,26,periperichicken
+Crust,Crust Supreme,fancy pizza2,26,crustsupreme
+Crust,Meat Delux,fancy pizza3,26,meatdelux
+Crust,Vegetarian Supreme,fancy pizza4,26,vegetariansupreme
+Crust,Pepperoni,fancy pizza5,26,pepperoni
+Crust,BBQ Chicken,fancy pizza6,26,bbqchicken
+Han Palace,combination fried rice,thai1,18.8,combinationfriedrice
+Han Palace,sweet and sour pork,thai2,20.8,sweetandsourpork
+Han Palace,squid with chilli spiced salt,thai3,22.8,squidwithchillispicedsalt
+Han Palace,honey king prawns,thai4,29.8,honeykingprawns
+Han Palace,Hong Kong Bay King Prawns,thai5,29.8,hongkongbaykingprawns
+Han Palace,Sweet and Sour Seafood,thai6,29.8,sweetandsourseafoodcombination
+Mae Khong Thai Restaurant,Thai Style Special Fried Rice,fancy thai1,15.9,thaistylespecialfriedrice
+Mae Khong Thai Restaurant,Green Curry,fancy thai2,20.9,greeycurry
+Mae Khong Thai Restaurant,Blanket Prawns,fancy thai3,13,blanketprawns
+Mae Khong Thai Restaurant,Red Curry,fancy thai4,20.9,red curry
+Pachi Pachi,Mee Goreng,more thai1,16,meegoreng
+Pachi Pachi,Pachi Style Curry Laksa,more thai2,16,pachistylecurrylaksa
+Pachi Pachi,Angry Birds,more thai3,40,angrybirds
+Pachi Pachi,Orange Beef,more thai4,26,orangebeef
+Pachi Pachi,Prawn and Lime,more thai5,28,prawnandlime
+Pachi Pachi,Yuzu Mayo Tempura Prawns,more thai6,27,yuzumayotempuraprawn
+Pachi Pachi,Salted egg yolk Crispy Eggplant Chips,more thai7,16.5,saltedeggyolkcrispyeggplantchips
+Chatime,Peach Green,drink1,9,peachgreen
+Chatime,Peach Black,drink2,9,peachblack
+Chatime,Mango,drink3,9,mango
+Chatime,Passionfruit Green,drink4,9,passionfruitgreen
+Chatime,Pop It Like It's Peach,drink5,10,popitpeach
+McDonald's,Classic Angus,fast food1,10.3,classicangus
+McDonald's,BBQ Bacon Angus,fast food2,10.9,bbqbaconangus
+McDonald's,Big Mac,fast food3,7.8,bigmac
+McDonald's,Quarter Pounder,fast food4,7.9,quarterpounder
+McDonald's,Double Quarter Pounder,fast food5,10.1,doublequarterpounder
+McDonald's,Cheeseburger,fast food6,4.1,cheeseburger
+McDonald's,Double Cheeseburger,fast food7,5.1,doublecheeseburger
+McDonald's,Triple Cheeseburger,fast food8,6.1,triplecheeseburger
+McDonald's,Hamburger,fast food9,4,hamburger
+Pretzel Perth,Cheese and Pepperoni,snack1,10.5,cheeseandpepperoni
+Pretzel Perth,Cheese and Garlic,snack2,9,cheeseandgarlic
+Pretzel Perth,Biscoff Crunch,snack3,11.5,biscoffcrunch
+Pretzel Perth,Nutella,snack4,10.5,nutella
+Pretzel Perth,Salted,snack5,8,salted
+Dessert Garden,Signature Iced Herbal Jelly,dessert1,14.5,signatureicedherbaljelly
+Dessert Garden,Mango Coconut Sago,dessert2,13.9,mangococonutsago
+Dessert Garden,Fresh Mango Purple Rice,dessert3,13.9,freshmangopurplerice
+Dessert Garden,Duo Condensed Milk Crushed Iced,dessert4,23.3,duocondensedmilkcrushediced
+Dessert Garden,Taro Ball and Pearl Tofu Pudding,dessert5,14.9,taroballandpearltofupudding
+Hermanos En Cantina,Brisket Nachos,mexican1,17,brisketnachos
+Hermanos En Cantina,Chicken Quesedilla,mexican2,10,chickenquesedilla
+Hermanos En Cantina,Triple H,mexican3,9.5,tripleh
+Hermanos En Cantina,Chips,mexican4,8,chips
+Hermanos En Cantina,Texas Red,mexican5,9,texasred

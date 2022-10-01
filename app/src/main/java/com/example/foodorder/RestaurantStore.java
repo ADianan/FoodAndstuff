@@ -46,7 +46,7 @@ public class RestaurantStore {
             ContentValues cv = new ContentValues();
             cv.put(RestaurantTable.Cols.RESTAURANTNAME, restaurant.getName());
             cv.put(RestaurantTable.Cols.IMAGE, restaurant.getImageid());
-            db.insert(FoodSchema.FoodTable.NAME,null,cv);
+            db.insert(RestaurantTable.NAME,null,cv);
         }
     }
 }

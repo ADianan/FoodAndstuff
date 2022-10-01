@@ -107,6 +107,7 @@ public class home extends Fragment {
             holder.price.setText(String.valueOf(data.get(position).getPrice()));
             holder.name.setText(String.valueOf(data.get(position).getName()));
             holder.description.setText(String.valueOf(data.get(position).getDescription()));
+            holder.image.setImageResource(data.get(position).getImage());
 
         }
 

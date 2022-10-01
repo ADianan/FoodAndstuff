@@ -63,14 +63,20 @@ public class FoodStore {
 
     }
 
-    public void addFood(Food food)
+    public void addFood(List<Food> allFood)
     {
-        ContentValues cv = new ContentValues();
-        cv.put(FoodTable.Cols.NAME, food.getName());
-        cv.put(FoodTable.Cols.DESCR, food.getDescription());
-        cv.put(FoodTable.Cols.PRICE, food.getPrice());
-        cv.put(FoodTable.Cols.FOODIMAGE, food.getImage());
-        db.insert(FoodTable.NAME,null,cv);
+        for(Food food: allFood)
+        {
+
+            ContentValues cv = new ContentValues();
+            cv.put(FoodTable.Cols.NAME, food.getName());
+            cv.put(FoodTable.Cols.DESCR, food.getDescription());
+            cv.put(FoodTable.Cols.PRICE, food.getPrice());
+            cv.put(FoodTable.Cols.FOODIMAGE, food.getImage());
+            cv.put(FoodTable.Cols.RESTAURANTNAME, food.getRestaurantid());
+            db.insert(FoodTable.NAME,null,cv);
+        }
+
     }
 
 }

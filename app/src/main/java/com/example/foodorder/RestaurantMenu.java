@@ -72,6 +72,7 @@ public class RestaurantMenu extends Fragment {
         RecyclerView rv = view.findViewById(R.id.container_restaurant);
         RestaurantAdapter adapter = new RestaurantAdapter(store.getRestaurantList(), model);
         rv.setLayoutManager( new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
+        rv.setAdapter(adapter);
         return view;
     }
 

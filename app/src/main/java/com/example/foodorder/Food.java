@@ -47,4 +47,8 @@ public class Food {
     public int getImage() {
         return image;
     }
+
+    public String getRestaurantid() {
+        return Restaurantid;
+    }
 }

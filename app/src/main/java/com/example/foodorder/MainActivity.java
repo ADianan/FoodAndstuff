@@ -23,17 +23,17 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private  static boolean ADDTODATABASE = true;
+    private  static boolean ADDTODATABASE = false;
     //when adding new data please remove the old data sets
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        /*if(true)
+        if(ADDTODATABASE == true)
         {
             ReadFood();
             ReadRestaurant();
-        }*/
+        }
 
         CartViewModel cart = new CartViewModel();
         Button but1 = findViewById(R.id.button);
@@ -76,14 +76,11 @@ public class MainActivity extends AppCompatActivity {
             String view = "";
             while((nextline = reader.readNext())!= null)
             {
-                for(int i=0; i<nextline.length; i++)
-                {
-                    int image = getResources().getIdentifier(nextline[3],"drawable",getPackageName());
-                    double price = Double.valueOf(nextline[2]);
-                    //food.add(new Food(nextline[0],nextline[1],price,image));
-                }
-                view = "";
+                int image = getResources().getIdentifier(nextline[4],"drawable",getPackageName());
+                double price = Double.valueOf(nextline[3]);
+                food.add(new Food(nextline[0],nextline[1],nextline[2],price,image));
             }
+            store.addFood(food);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
