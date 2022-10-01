@@ -67,6 +67,7 @@ public class home extends Fragment {
         foodData.load(getActivity());
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

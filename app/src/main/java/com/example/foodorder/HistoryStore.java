@@ -37,14 +37,16 @@ public class HistoryStore {
         }
         return history;
     }
-    public void addCustomer(History history,Customer customer)
+    public void addOrder(History history,Customer customer)
     {
+        int amount =history.purchasedFood.getAmount();
         ContentValues cv = new ContentValues();
         cv.put(HistorySchema.HistoryTable.Cols.ORDERID, history.orderId);
         cv.put(HistorySchema.HistoryTable.Cols.TIME, String.valueOf(history.dateOfPurchase));
-        cv.put(HistorySchema.HistoryTable.Cols.PRICE, history.purchasedFood.getPrice());
-        cv.put(HistorySchema.HistoryTable.Cols.FOODIMAGE, history.purchasedFood.getImage());
-        cv.put(HistorySchema.HistoryTable.Cols.NAME, history.purchasedFood.getName());
+        cv.put(HistorySchema.HistoryTable.Cols.PRICE, history.purchasedFood.getFood().getPrice() *amount);
+        cv.put(HistorySchema.HistoryTable.Cols.FOODIMAGE, history.purchasedFood.getFood().getImage());
+        cv.put(HistorySchema.HistoryTable.Cols.NAME, history.purchasedFood.getFood().getName() );
+        cv.put(HistorySchema.HistoryTable.Cols.AMOUNT, amount);
         cv.put(HistorySchema.HistoryTable.Cols.USERID, customer.getUserid() );
         db.insert(HistorySchema.HistoryTable.NAME,null,cv);
     }

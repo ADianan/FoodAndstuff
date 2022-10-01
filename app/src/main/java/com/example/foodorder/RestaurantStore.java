@@ -19,7 +19,8 @@ public class RestaurantStore {
         ).getWritableDatabase();
         restaurantList = new ArrayList<>();
     }
-    public List<Restaurant>getFoodList(String restaurantName)
+
+    public List<Restaurant>getRestaurantList()
     {
 
         Cursor cursor  =db.query(RestaurantTable.NAME,null,null,null,null,null,null);

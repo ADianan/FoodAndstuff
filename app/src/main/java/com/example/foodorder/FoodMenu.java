@@ -25,7 +25,12 @@ public class FoodMenu extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private  FoodStore store;
+    private String RestaurantName;
+    public FoodMenu(String restaurantName) {
+        RestaurantName = restaurantName;
+        // Required empty public constructor
+    }
     public FoodMenu() {
         // Required empty public constructor
     }
@@ -55,6 +60,8 @@ public class FoodMenu extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        store = new FoodStore();
+        store.load(getActivity());
     }
 
     @Override

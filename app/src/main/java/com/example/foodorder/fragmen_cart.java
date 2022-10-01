@@ -98,7 +98,6 @@ public class fragmen_cart extends Fragment {
     {
 
         List<Cart> cart;
-        int position1;
         public CartAdapter( List<Cart> cart) {
             this.cart  = cart;
         }
@@ -107,7 +106,7 @@ public class fragmen_cart extends Fragment {
         @Override
         public CartHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater li = LayoutInflater.from(parent.getContext());
-            View view = li.inflate(R.layout.food_list_layout,parent,false);
+            View view = li.inflate(R.layout.cart_layout,parent,false);
             CartHolder homeHolder = new CartHolder(view);
             return homeHolder;
         }
@@ -115,9 +114,13 @@ public class fragmen_cart extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull CartHolder holder, int position) {
 
-//            holder.price.setText(String.valueOf(cart.get(position).getPrice()));
-//            holder.name.setText(String.valueOf(cart.get(position).getName()));
-//            holder.description.setText(String.valueOf(cart.get(position).getDescription()));
+            double price = cart.get(position).getFood().getPrice();
+            int amount= cart.get(position).getAmount();
+            price = price * amount;
+            holder.price.setText(String.valueOf(price));
+            holder.name.setText(String.valueOf(cart.get(position).getFood().getName()));
+            holder.image.setImageResource(cart.get(position).getFood().getImage());
+            holder.amount.setText(String.valueOf(amount));
 
         }
 
@@ -131,16 +134,16 @@ public class fragmen_cart extends Fragment {
     private class CartHolder  extends ViewHolder
     {
         TextView name;
-        TextView description;
+        TextView amount;
         TextView price;
         ImageView image;
 
         public CartHolder(@NonNull View itemView) {
         super(itemView);
-        name = itemView.findViewById(R.id.foodName);
-        description = itemView.findViewById(R.id.foodDescription);
-        price = itemView.findViewById(R.id.price);
-        image = itemView.findViewById(R.id.foodImage);
+        name = itemView.findViewById(R.id.foodCartName);
+        amount = itemView.findViewById(R.id.foodcartAmount);
+        price = itemView.findViewById(R.id.foodcartPrice);
+        image = itemView.findViewById(R.id.foodCartImage);
 
     }
         public void bind (List<Food> list,CartAdapter cartAdapter)

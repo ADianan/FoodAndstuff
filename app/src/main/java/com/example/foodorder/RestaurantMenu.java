@@ -10,6 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,15 +30,15 @@ public class RestaurantMenu extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private RestaurantStore store;
     private ButtonViewModel model;
-    public RestaurantMenu() {
-        // Required empty public constructor
-    }
     public RestaurantMenu(ButtonViewModel model) {
         // Required empty public constructor
         this.model = model;
     }
-
+    public RestaurantMenu() {
+        // Required empty public constructor
+    }
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -56,10 +60,8 @@ public class RestaurantMenu extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        store = new RestaurantStore();
+        store.load(getActivity());
     }
 
     @Override
@@ -68,39 +70,63 @@ public class RestaurantMenu extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_restaurant_menu, container, false);
         RecyclerView rv = view.findViewById(R.id.container_restaurant);
-        RestaurantAdapter adapter = new RestaurantAdapter();
+        RestaurantAdapter adapter = new RestaurantAdapter(store.getRestaurantList(), model);
         rv.setLayoutManager( new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
-        model.but1.setText("1");
-        model.but2.setText("2");
-        model.but3.setText("3");
         return view;
     }
 
     private class RestaurantAdapter extends RecyclerView.Adapter<RestaurantHolder>
     {
 
+        private  List<Restaurant> restaurantList;
+        private  ButtonViewModel model;
+        private RestaurantAdapter(List<Restaurant> restaurantList, ButtonViewModel model) {
+            this.restaurantList = restaurantList;
+            this.model = model;
+        }
 
         @NonNull
         @Override
         public RestaurantHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return null;
+            LayoutInflater li = LayoutInflater.from(parent.getContext());
+            View view = li.inflate(R.layout.restaurant_layout,parent,false);
+            RestaurantHolder restaurantHolder = new RestaurantHolder(view);
+            return restaurantHolder;
         }
 
         @Override
         public void onBindViewHolder(@NonNull RestaurantHolder holder, int position) {
-
+            holder.bind(this);
+            holder.name.setText(restaurantList.get(position).getName());
+            holder.image.setImageResource(restaurantList.get(position).getImageid());
         }
 
         @Override
         public int getItemCount() {
-            return 0;
+            return restaurantList.size();
         }
     }
     private class RestaurantHolder extends RecyclerView.ViewHolder
     {
-
+        TextView name;
+        ImageView image;
         public RestaurantHolder(@NonNull View itemView) {
             super(itemView);
+            name = itemView.findViewById(R.id.restaurantName);
+            image = itemView.findViewById(R.id.restautantImage);
+        }
+        public void bind(RestaurantAdapter adapter)
+        {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(getAdapterPosition() == RecyclerView.NO_POSITION)
+                    {
+                        return;
+                    }
+                    model.ReplaceFrag(new FoodMenu((String) name.getText()));
+                }
+            });
         }
     }
 }

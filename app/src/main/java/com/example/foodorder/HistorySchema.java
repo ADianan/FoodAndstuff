@@ -10,6 +10,7 @@ public class HistorySchema {
             public  static final String NAME = "food_id" ;
             public  static final String PRICE = "price" ;
             public  static final String FOODIMAGE = "food_image" ;
+            public  static final String AMOUNT = "amount" ;
         }
 
     }

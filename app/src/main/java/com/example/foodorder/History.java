@@ -5,6 +5,6 @@ import java.sql.Time;
 public class History {
 
     public int orderId;
-    public  Food purchasedFood;
+    public  Cart purchasedFood;
     public Time dateOfPurchase;
 }

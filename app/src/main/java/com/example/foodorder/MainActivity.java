@@ -51,10 +51,7 @@ public class MainActivity extends AppCompatActivity {
         but1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* model.ReplaceFrag(new RestaurantMenu(model));*/
-                Food food = new Food("kfc","burge","what",2.12,getResources().getIdentifier("crust","drawable",getPackageName()));
-                FoodAmountDialog dialog = new FoodAmountDialog();
-                dialog.createNew(MainActivity.this,cart,food);
+               model.ReplaceFrag(new RestaurantMenu(model));
             }
         });
         but3.setOnClickListener(new View.OnClickListener() {
