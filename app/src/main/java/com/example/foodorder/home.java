@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,14 +31,7 @@ public class home extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private ButtonViewModel model;
-    private CartViewModel cart;
     private FoodStore foodData;
-    public home( ButtonViewModel model, CartViewModel cart)
-    {
-        this.model = model;
-        this.cart = cart;
-    }
     public home() {
         // Required empty public constructor
     }
@@ -74,7 +68,9 @@ public class home extends Fragment {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_home, container, false);
         RecyclerView rv = view.findViewById(R.id.container_home);
-        HomeAdapter adapter = new HomeAdapter(foodData.getHomeFood(),cart);//set adapter
+
+        HomeAdapter adapter = new HomeAdapter(foodData.getHomeFood());//set adapter
+
         rv.setAdapter(adapter);
         rv.setLayoutManager( new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));//set fragment layout
 
@@ -85,11 +81,11 @@ public class home extends Fragment {
     {
 
         List<Food> data;
-        CartViewModel cart;
+        MutabaleCart cart;
         int position1;
-        public HomeAdapter(List<Food> data, CartViewModel cart) {
+        public HomeAdapter(List<Food> data) {
             this.data = data;
-            this.cart  = cart;
+            this.cart  =  new ViewModelProvider(getActivity(), (ViewModelProvider.Factory) new ViewModelProvider.NewInstanceFactory()).get(MutabaleCart.class);
         }
 
         @NonNull
@@ -103,7 +99,7 @@ public class home extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull HomeHolder holder, int position) {
-            holder.bind(this, cart);
+            holder.bind(this);
             holder.price.setText(String.valueOf(data.get(position).getPrice()));
             holder.name.setText(String.valueOf(data.get(position).getName()));
             holder.description.setText(String.valueOf(data.get(position).getDescription()));
@@ -133,7 +129,7 @@ public class home extends Fragment {
             image = itemView.findViewById(R.id.foodImage);
 
         }
-        public  void bind(HomeAdapter adapter, CartViewModel cart)
+        public  void bind(HomeAdapter adapter)
         {
             //Add food to cart when item is clicked
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -144,7 +140,7 @@ public class home extends Fragment {
                         return;
                     }
                     FoodAmountDialog dialog = new FoodAmountDialog();
-                    dialog.createNew(getActivity(),cart,adapter.data.get(getAdapterPosition()));
+                    dialog.createNew(getActivity(),adapter.cart,adapter.data.get(getAdapterPosition()));
                 }
             });
         }

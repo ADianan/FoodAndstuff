@@ -2,9 +2,12 @@ package com.example.foodorder;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.res.AssetManager;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +23,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,32 +39,39 @@ public class MainActivity extends AppCompatActivity {
             ReadFood();
             ReadRestaurant();
         }
+        Configuration configuration = getResources().getConfiguration();
 
-        CartViewModel cart = new CartViewModel();
-        Button but1 = findViewById(R.id.button);
-        Button but2 = findViewById(R.id.button2);
-        Button but3 = findViewById(R.id.button3);
-        FragmentManager fm = getSupportFragmentManager();
-        ButtonViewModel model = new ButtonViewModel(but1,but2,but3, fm);
-        model.ReplaceFrag(new home(model, cart));
-        but2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                model.ReplaceFrag(new home(model, cart));
-            }
-        });
-        but1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               model.ReplaceFrag(new RestaurantMenu(model));
-            }
-        });
-        but3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                model.ReplaceFrag(new fragmen_cart(cart));
-            }
-        });
+        int  widthDp = configuration.screenWidthDp;
+
+        if(widthDp<600)
+        {
+
+            Button but1 = findViewById(R.id.button);
+            Button but2 = findViewById(R.id.button2);
+            Button but3 = findViewById(R.id.button3);
+            FragmentManager fm = getSupportFragmentManager();
+            ButtonViewModel model = new ButtonViewModel(but1,but2,but3, fm);
+
+            model.ReplaceFrag(new home());
+            but2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    model.ReplaceFrag(new home());
+                }
+            });
+            but1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                   model.ReplaceFrag(new RestaurantMenu());
+                }
+            });
+            but3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    model.ReplaceFrag(new fragmen_cart());
+                }
+            });
+        }
 
 
     }

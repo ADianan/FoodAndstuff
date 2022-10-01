@@ -4,10 +4,13 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Observable;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,6 +37,7 @@ public class fragmen_cart extends Fragment {
     private String mParam1;
     private String mParam2;
     private CartViewModel cartViewModel;
+    private  MutabaleCart mutabaleCart;
     public fragmen_cart(CartViewModel cartViewModel) {
         // Required empty public constructor
         this.cartViewModel = cartViewModel;
@@ -72,8 +77,9 @@ public class fragmen_cart extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fragmen_cart, container, false);
         RecyclerView rv = view.findViewById(R.id.container_cart);
+        mutabaleCart =  new ViewModelProvider(getActivity(), (ViewModelProvider.Factory) new ViewModelProvider.NewInstanceFactory()).get(MutabaleCart.class);
         rv.setLayoutManager( new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
-        CartAdapter cartAdapter = new CartAdapter(cartViewModel.cart);
+        CartAdapter cartAdapter = new CartAdapter();
         rv.setAdapter(cartAdapter);
         Button checkout = view.findViewById(R.id.checkout);
         Button history = view.findViewById(R.id.history);
@@ -94,12 +100,23 @@ public class fragmen_cart extends Fragment {
 
         return view;
     }
-    private class CartAdapter extends RecyclerView.Adapter<CartHolder>
+    public class CartAdapter extends RecyclerView.Adapter<CartHolder>
     {
-
-        List<Cart> cart;
-        public CartAdapter( List<Cart> cart) {
-            this.cart  = cart;
+        MutabaleCart mutabaleCart;
+        CartViewModel cart;
+        public CartAdapter() {
+            mutabaleCart = new ViewModelProvider(getActivity(), (ViewModelProvider.Factory) new ViewModelProvider.NewInstanceFactory()).get(MutabaleCart.class);
+            cart = mutabaleCart.getMutableLiveData();
+            mutabaleCart.mutableLiveData.observe(getActivity(), new Observer<CartViewModel>() {
+                @Override
+                public void onChanged(CartViewModel cartViewModel) {
+                    notifyChange();
+                }
+            });
+        }
+        private void notifyChange()
+        {
+            notifyDataSetChanged();
         }
 
         @NonNull
@@ -114,13 +131,14 @@ public class fragmen_cart extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull CartHolder holder, int position) {
 
-            double price = cart.get(position).getFood().getPrice();
-            int amount= cart.get(position).getAmount();
+            double price = cart.cart.get(position).getFood().getPrice();
+            int amount= cart.cart.get(position).getAmount();
             price = price * amount;
             holder.price.setText(String.valueOf(price));
-            holder.name.setText(String.valueOf(cart.get(position).getFood().getName()));
-            holder.image.setImageResource(cart.get(position).getFood().getImage());
+            holder.name.setText(String.valueOf(cart.cart.get(position).getFood().getName()));
+            holder.image.setImageResource(cart.cart.get(position).getFood().getImage());
             holder.amount.setText(String.valueOf(amount));
+            holder.bind(this);
 
         }
 
@@ -128,7 +146,8 @@ public class fragmen_cart extends Fragment {
 
         @Override
         public int getItemCount() {
-            return cart.size();
+            Log.d("getItemCount", "getItemCount: "+ cart.cart.size());
+            return cart.cart.size();
         }
     }
     private class CartHolder  extends ViewHolder
@@ -146,7 +165,7 @@ public class fragmen_cart extends Fragment {
         image = itemView.findViewById(R.id.foodCartImage);
 
     }
-        public void bind (List<Food> list,CartAdapter cartAdapter)
+        public void bind (CartAdapter cartAdapter)
         {
             //Add food to cart when item is clicked
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -156,22 +175,12 @@ public class fragmen_cart extends Fragment {
                         return;
                     }
 
-                    list.add(list.get(getAdapterPosition()));
-                    cartAdapter.notifyDataSetChanged();
+                    FoodAmountDialog dialog = new FoodAmountDialog();
+                    int og =cartAdapter.cart.cart.get(getAdapterPosition()).getAmount();
+                    dialog.EditCart(getActivity(),getAdapterPosition());
                 }
             });
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    if (getAdapterPosition() == RecyclerView.NO_POSITION) {
-                        return true;
-                    }
 
-                    list.remove(getAdapterPosition());
-                    cartAdapter.notifyDataSetChanged();
-                    return true;
-                }
-            });
 
         }
     }
