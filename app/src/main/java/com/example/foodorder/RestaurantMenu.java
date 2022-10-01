@@ -32,9 +32,11 @@ public class RestaurantMenu extends Fragment {
     private String mParam2;
     private RestaurantStore store;
     private ButtonViewModel model;
-    public RestaurantMenu(ButtonViewModel model) {
+    private FrameLayoutViewModel flModel;
+    public RestaurantMenu(ButtonViewModel model, FrameLayoutViewModel flModel) {
         // Required empty public constructor
         this.model = model;
+        this.flModel = flModel;
     }
     public RestaurantMenu() {
         // Required empty public constructor
@@ -62,6 +64,7 @@ public class RestaurantMenu extends Fragment {
         super.onCreate(savedInstanceState);
         store = new RestaurantStore();
         store.load(getActivity());
+
     }
 
     @Override
@@ -73,6 +76,7 @@ public class RestaurantMenu extends Fragment {
         RestaurantAdapter adapter = new RestaurantAdapter(store.getRestaurantList(), model);
         rv.setLayoutManager( new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
         rv.setAdapter(adapter);
+
         return view;
     }
 
@@ -125,7 +129,7 @@ public class RestaurantMenu extends Fragment {
                     {
                         return;
                     }
-                    model.ReplaceFrag(new FoodMenu((String) name.getText()));
+
                 }
             });
         }
