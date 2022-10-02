@@ -45,34 +45,41 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
+        android:layout_margin="6dp"
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:weightSum="1"
+        android:weightSum="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-
         <Button
             android:id="@+id/history"
-            android:layout_width="150dp"
+            android:textSize="10dp"
+            android:layout_margin="6dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/orange"
+            android:layout_weight="1"
+            android:backgroundTint="@color/black"
             android:text="Button" />
 
         <Space
-            android:layout_width="50dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/checkout"
-            android:layout_width="150dp"
+            android:textSize="10dp"
+            android:layout_margin="6dp"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/orange"
+            android:layout_weight="1"
+            android:backgroundTint="@color/red"
             android:text="Button" />
     </LinearLayout>
 
@@ -80,6 +87,7 @@
         android:id="@+id/container_cart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@drawable/boarder"
 
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"

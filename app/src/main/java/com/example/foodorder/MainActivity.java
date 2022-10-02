@@ -29,7 +29,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private  static boolean ADDTODATABASE = false;
+    private  static boolean ADDTODATABASE = true;
     //when adding new data please remove the old data sets
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,8 +85,7 @@ public class MainActivity extends AppCompatActivity {
             but1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-
+                    model.ReplaceCenterFrag(new home());
                 }
             });
 
