@@ -70,7 +70,7 @@ public class FoodMenu extends Fragment {
         public void onBindViewHolder(@NonNull FoodHolder holder, int position) {
             holder.bind(this);
             holder.name.setText(foodList.get(position).getName());
-            //holder.image.setImageResource(foodList.get(position).getImageid());
+            holder.image.setImageResource(foodList.get(position).getImage());
         }
 
         @Override

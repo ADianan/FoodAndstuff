@@ -61,10 +61,8 @@ public class RestaurantMenu extends Fragment {
     private class RestaurantAdapter extends RecyclerView.Adapter<RestaurantHolder>
     {
         private  List<Restaurant> restaurantList;
-        private  ButtonViewModel model;
         private RestaurantAdapter(List<Restaurant> restaurantList, ButtonViewModel model) {
             this.restaurantList = restaurantList;
-            this.model = model;
         }
 
         @NonNull

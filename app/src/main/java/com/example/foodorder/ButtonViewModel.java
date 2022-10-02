@@ -41,7 +41,7 @@ public class ButtonViewModel extends ViewModel
     public void ReplaceLeftFrag(Fragment frag)
     {
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.container_restaurant,frag);
+        ft.replace(R.id.container_restaurant2 ,frag);
         ft.commit();
     }
     public void ReplaceCenterFrag(Fragment frag)
