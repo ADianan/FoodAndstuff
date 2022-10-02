@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             FragmentManager fm = getSupportFragmentManager();
             ButtonViewModel model = new ButtonViewModel(fm);
 
-            model.ReplaceLeftFrag(new RestaurantMenu());
+            model.ReplaceLeftFrag(new RestaurantMenu(model,widthDp));
             model.ReplaceCenterFrag(new home());
             model.ReplaceRightFrag(new fragmen_cart());
 

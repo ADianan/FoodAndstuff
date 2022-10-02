@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -69,7 +70,9 @@ public class FoodMenu extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull FoodHolder holder, int position) {
             holder.bind(this);
-            holder.name.setText(foodList.get(position).getName());
+            holder.price.setText(String.valueOf(foodList.get(position).getPrice()));
+            holder.name.setText(String.valueOf(foodList.get(position).getName()));
+            holder.description.setText(String.valueOf(foodList.get(position).getDescription()));
             holder.image.setImageResource(foodList.get(position).getImage());
         }
 
@@ -81,11 +84,15 @@ public class FoodMenu extends Fragment {
     private class FoodHolder extends RecyclerView.ViewHolder
     {
         TextView name;
+        TextView description;
+        TextView price;
         ImageView image;
         public FoodHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.restaurantName);
-            image = itemView.findViewById(R.id.restautantImage);
+            name = itemView.findViewById(R.id.foodName);
+            description = itemView.findViewById(R.id.foodDescription);
+            price = itemView.findViewById(R.id.price);
+            image = itemView.findViewById(R.id.foodImage);
         }
         public void bind(FoodAdapter adapter)
         {
@@ -96,6 +103,9 @@ public class FoodMenu extends Fragment {
                     {
                         return;
                     }
+                    FoodAmountDialog dialog = new FoodAmountDialog();
+                    MutabaleCart cart = new ViewModelProvider(getActivity(), (ViewModelProvider.Factory) new ViewModelProvider.NewInstanceFactory()).get(MutabaleCart.class);
+                    dialog.createNew(getActivity(),cart,adapter.foodList.get(getAdapterPosition()));
 
                 }
             });

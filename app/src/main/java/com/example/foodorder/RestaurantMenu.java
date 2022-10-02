@@ -1,5 +1,6 @@
 package com.example.foodorder;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -27,10 +28,11 @@ public class RestaurantMenu extends Fragment {
     private RestaurantStore store;
     private ButtonViewModel model;
     private FrameLayoutViewModel flModel;
-    public RestaurantMenu(ButtonViewModel model, FrameLayoutViewModel flModel) {
+    int width;
+    public RestaurantMenu(ButtonViewModel model, int widthDp) {
         // Required empty public constructor
         this.model = model;
-        this.flModel = flModel;
+        width = widthDp;
     }
     public RestaurantMenu() {
         // Required empty public constructor
@@ -104,7 +106,14 @@ public class RestaurantMenu extends Fragment {
                     {
                         return;
                     }
-                    model.ReplaceFrag(new FoodMenu((String) name.getText()));
+                    if(width<600)
+                    {
+
+                        model.ReplaceFrag(new FoodMenu((String) name.getText()));
+                    }
+                    else{
+                        model.ReplaceCenterFrag(new FoodMenu((String) name.getText()));
+                    }
                 }
             });
         }
