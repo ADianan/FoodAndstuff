@@ -1,10 +1,17 @@
 package com.example.foodorder;
 
-import java.sql.Time;
+import java.time.LocalTime;
 
 public class History {
 
-    public int orderId;
+    public String orderId;
     public  Cart purchasedFood;
-    public Time dateOfPurchase;
+    public String dateOfPurchase;
+
+    public History(String orderId, Cart newCart, String date)
+    {
+        this.orderId = orderId;
+        purchasedFood = newCart;
+        dateOfPurchase = date;
+    }
 }

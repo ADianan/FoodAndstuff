@@ -21,7 +21,7 @@ public class FrameLayoutViewModel extends ViewModel {
         this.fm = fm;
     }
 
-    public void ReplaceRestaurantFrag(Fragment frag)
+  /*  public void ReplaceRestaurantFrag(Fragment frag)
     {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.container_restaurant2,frag);
@@ -38,5 +38,5 @@ public class FrameLayoutViewModel extends ViewModel {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.container_cart2,frag);
         ft.commit();
-    }
+    }*/
 }

@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import java.util.List;
 import java.util.Observable;
+import java.util.UUID;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -108,7 +109,8 @@ public class fragmen_cart extends Fragment {
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                ButtonViewModel model = new ButtonViewModel(getActivity().getSupportFragmentManager());
+                model.ReplaceFrag(new fragment_history(UUID.randomUUID().toString()));
             }
         });
 

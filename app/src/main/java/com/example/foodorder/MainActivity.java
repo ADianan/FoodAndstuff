@@ -29,7 +29,7 @@ import java.util.Observer;
 
 public class MainActivity extends AppCompatActivity {
 
-    private  static boolean ADDTODATABASE = true;
+    private  static boolean ADDTODATABASE = false;
     //when adding new data please remove the old data sets
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +73,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-        else{
+        /*else{
             Button but1 = findViewById(R.id.button);
             Button but3 = findViewById(R.id.button3);
             FragmentManager fm = getSupportFragmentManager();
-            ButtonViewModel model = new ButtonViewModel(but1,but3, fm);
+            //ButtonViewModel model = new ButtonViewModel(but1,but3, fm);
 
             model.ReplaceFrag(new home());
             but1.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                     startNewActivity();
                 }
             });
-        }
+        }*/
 
 
     }

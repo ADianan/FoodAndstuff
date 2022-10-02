@@ -21,6 +21,10 @@ public class ButtonViewModel extends ViewModel
         this.but3 = but3;
         this.fm = fm;
     }
+    public ButtonViewModel(FragmentManager fm)
+    {
+        this.fm = fm;
+    }
     public void ReplaceFrag(Fragment frag)
     {
         FragmentTransaction ft = fm.beginTransaction();

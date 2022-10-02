@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 
 public class MainActivityTablet extends AppCompatActivity {
 
-    @Override
+    /*@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_tablet);
@@ -38,5 +38,5 @@ public class MainActivityTablet extends AppCompatActivity {
     private void startNewActivity(){
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-    }
+    }*/
 }
