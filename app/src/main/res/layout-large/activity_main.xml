@@ -54,7 +54,7 @@
             android:weightSum="3"
             >
             <FrameLayout
-                android:id="@+id/container_restaurant"
+                android:id="@+id/container_restaurant2"
                 android:layout_width="170dp"
                 android:layout_height="match_parent"
                 />

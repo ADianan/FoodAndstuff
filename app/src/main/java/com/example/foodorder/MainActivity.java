@@ -12,6 +12,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 import com.opencsv.CSVParserWriter;
 import com.opencsv.CSVReader;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         if(ADDTODATABASE == true)
         {
             ReadFood();
@@ -71,26 +73,25 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-        /*else{
+        else{
             Button but1 = findViewById(R.id.button);
-            Button but3 = findViewById(R.id.button3);
-            FragmentManager fm = getSupportFragmentManager();
-            //ButtonViewModel model = new ButtonViewModel(but1,but3, fm);
-
-            model.ReplaceFrag(new home());
             but1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startNewActivity();
+                    FrameLayout rvRestaurants = findViewById(R.id.container_restaurant2);
+                    FrameLayout rvFoods = findViewById(R.id.container_food);
+                    FrameLayout rvCart = findViewById(R.id.container_cart);
+
+                    FragmentManager fm = getSupportFragmentManager();
+                    ButtonViewModel model = new ButtonViewModel(fm);
+
+                    model.ReplaceLeftFrag(new RestaurantMenu());
+                    model.ReplaceCenterFrag(new FoodMenu());
+                    model.ReplaceRightFrag(new fragmen_cart());
                 }
             });
+
         }
-        model.ReplaceLeftFrag(new RestaurantMenu());
-            model.ReplaceCenterFrag(new home());
-            model.ReplaceRightFrag(new fragmen_cart());
-
-            */
-
 
     }
 

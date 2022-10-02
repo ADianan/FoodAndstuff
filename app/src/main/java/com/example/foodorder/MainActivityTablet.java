@@ -18,7 +18,7 @@ public class MainActivityTablet extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_tablet);
 
-        FrameLayout rvRestaurants = findViewById(R.id.container_restaurant);
+        FrameLayout rvRestaurants = findViewById(R.id.container_restaurant2);
         FrameLayout rvFoods = findViewById(R.id.container_food);
         FrameLayout rvCart = findViewById(R.id.container_cart);
 
@@ -28,11 +28,7 @@ public class MainActivityTablet extends AppCompatActivity {
 
         flModel.ReplaceRestaurantFrag(new RestaurantMenu());
         flModel.ReplaceFoodFrag(new FoodMenu());
-        flModel.ReplaceFoodFrag(new fragmen_cart());
+        flModel.ReplaceCartFrag(new fragmen_cart());
     }
 
-    private void startNewActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
 }
