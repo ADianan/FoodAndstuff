@@ -12,14 +12,15 @@ public class CustomerStore {
     private SQLiteDatabase db;
     public void load(Context context)
     {
-        this.db = new FoodStoreDbHelper( // Open database
+        this.db = new CustomerdbHelper( // Open database
                 context.getApplicationContext()
         ).getWritableDatabase();
     }
     public Customer getCustomer(String email,String password)
     {
-        String clause = "WHERE email =" +"'" + email +"'" +" AND " +"password = " +"'" + password +"'";
-        Cursor cursor  =db.query(CustomerTable.NAME,null,clause,null,null,null,null);
+        String clause = "email = ?" +" AND " +"password = ?";
+        String[] args = {email,password};
+        Cursor cursor  =db.query(CustomerTable.NAME,null,clause,args,null,null,null);
         CustomerCursor foodDBCursor = new CustomerCursor(cursor);
         try {
             foodDBCursor.moveToFirst();

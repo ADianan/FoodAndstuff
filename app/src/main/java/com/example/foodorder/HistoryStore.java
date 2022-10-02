@@ -18,9 +18,10 @@ public class HistoryStore {
     }
     public List<History>  getCustomerHistory(String userId)
     {
-        String clause = "WHERE user_id =" +"'" + userId +"'";
+        String clause = "WHERE user_id = ?";
+        String[] args = {userId};
         List<History> orderHistory = new ArrayList<>();
-        Cursor cursor  =db.query(HistoryTable.NAME,null,null,null,null,null,null);
+        Cursor cursor  =db.query(HistoryTable.NAME,null,clause,args,null,null,null);
         HistoryCursor foodDBCursor = new HistoryCursor(cursor);
         try {
             foodDBCursor.moveToFirst();
