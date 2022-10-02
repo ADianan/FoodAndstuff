@@ -1,5 +1,5 @@
 package com.example.foodorder;
-
+//
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,46 +22,27 @@ import java.util.List;
  */
 public class RestaurantMenu extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private RestaurantStore store;
     private ButtonViewModel model;
-    public RestaurantMenu(ButtonViewModel model) {
+    private FrameLayoutViewModel flModel;
+    public RestaurantMenu(ButtonViewModel model, FrameLayoutViewModel flModel) {
         // Required empty public constructor
         this.model = model;
+        this.flModel = flModel;
     }
     public RestaurantMenu() {
         // Required empty public constructor
     }
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment RestaurantMenu.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static RestaurantMenu newInstance(String param1, String param2) {
-        RestaurantMenu fragment = new RestaurantMenu();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         store = new RestaurantStore();
         store.load(getActivity());
+
     }
 
     @Override
@@ -73,12 +54,12 @@ public class RestaurantMenu extends Fragment {
         RestaurantAdapter adapter = new RestaurantAdapter(store.getRestaurantList(), model);
         rv.setLayoutManager( new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
         rv.setAdapter(adapter);
+
         return view;
     }
 
     private class RestaurantAdapter extends RecyclerView.Adapter<RestaurantHolder>
     {
-
         private  List<Restaurant> restaurantList;
         private  ButtonViewModel model;
         private RestaurantAdapter(List<Restaurant> restaurantList, ButtonViewModel model) {
@@ -125,7 +106,7 @@ public class RestaurantMenu extends Fragment {
                     {
                         return;
                     }
-                    model.ReplaceFrag(new FoodMenu((String) name.getText()));
+
                 }
             });
         }

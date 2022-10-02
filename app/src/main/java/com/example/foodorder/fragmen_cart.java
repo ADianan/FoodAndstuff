@@ -1,5 +1,7 @@
 package com.example.foodorder;
 
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -73,18 +76,29 @@ public class fragmen_cart extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+
         View view = inflater.inflate(R.layout.fragment_fragmen_cart, container, false);
         RecyclerView rv = view.findViewById(R.id.container_cart);
         mutabaleCart =  new ViewModelProvider(getActivity(), (ViewModelProvider.Factory) new ViewModelProvider.NewInstanceFactory()).get(MutabaleCart.class);
         rv.setLayoutManager( new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL, false));
         CartAdapter cartAdapter = new CartAdapter();
         rv.setAdapter(cartAdapter);
+
+        LinearLayout ll = new LinearLayout(container.getContext());
+        ll.setOrientation(LinearLayout.HORIZONTAL);
+
         Button checkout = view.findViewById(R.id.checkout);
-        Button history = view.findViewById(R.id.history);
         checkout.setText("Checkout");
+        checkout.setLayoutParams(layoutParams);
+
+        Button history = view.findViewById(R.id.history);
         history.setText("History");
+        history.setLayoutParams(layoutParams);
+
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -158,13 +172,13 @@ public class fragmen_cart extends Fragment {
         ImageView image;
 
         public CartHolder(@NonNull View itemView) {
-        super(itemView);
-        name = itemView.findViewById(R.id.foodCartName);
-        amount = itemView.findViewById(R.id.foodcartAmount);
-        price = itemView.findViewById(R.id.foodcartPrice);
-        image = itemView.findViewById(R.id.foodCartImage);
+            super(itemView);
+            name = itemView.findViewById(R.id.foodCartName);
+            amount = itemView.findViewById(R.id.foodcartAmount);
+            price = itemView.findViewById(R.id.foodcartPrice);
+            image = itemView.findViewById(R.id.foodCartImage);
 
-    }
+        }
         public void bind (CartAdapter cartAdapter)
         {
             //Add food to cart when item is clicked
@@ -180,8 +194,6 @@ public class fragmen_cart extends Fragment {
                     dialog.EditCart(getActivity(),getAdapterPosition());
                 }
             });
-
-
         }
     }
 }
