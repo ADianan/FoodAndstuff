@@ -8,7 +8,7 @@ public class Customer {
     private String email;
     private String password;
     private String Userid;
-    private List<List<History>> history;
+    private List<History> history;
 
 
     public Customer(String email, String password, String userid) {
@@ -16,7 +16,7 @@ public class Customer {
         this.password = password;
         Userid = userid;
 
-        history = new ArrayList<List<History>>();
+        history = new ArrayList();
 
     }
 
@@ -30,5 +30,13 @@ public class Customer {
 
     public String getEmail() {
         return email;
+    }
+
+    public List<History> getHistory() {
+        return history;
+    }
+
+    public void setHistory(List<History> history) {
+        this.history = history;
     }
 }

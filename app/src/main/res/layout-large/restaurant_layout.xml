@@ -27,4 +27,5 @@
         app:layout_constraintTop_toBottomOf="@id/restaurantName"
         tools:srcCompat="@tools:sample/avatars" />
 
+>>>>>>> f78eb7b5b5c07a341cb38da794cc5b31b8e5cfd1
 </androidx.constraintlayout.widget.ConstraintLayout>

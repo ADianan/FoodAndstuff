@@ -24,12 +24,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    private  static boolean ADDTODATABASE = true;
+    private  static boolean ADDTODATABASE = false;
     //when adding new data please remove the old data sets
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,23 +71,25 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-        else{
+        /*else{
             Button but1 = findViewById(R.id.button);
+            Button but3 = findViewById(R.id.button3);
             FragmentManager fm = getSupportFragmentManager();
-            ButtonViewModel model = new ButtonViewModel(but1,fm);
-            model.ReplaceCenterFrag(new home());
+            //ButtonViewModel model = new ButtonViewModel(but1,but3, fm);
 
+            model.ReplaceFrag(new home());
             but1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    model.ReplaceCenterFrag(new home());
+                    startNewActivity();
                 }
             });
-
-            model.ReplaceLeftFrag(new RestaurantMenu());
+        }
+        model.ReplaceLeftFrag(new RestaurantMenu());
             model.ReplaceCenterFrag(new home());
             model.ReplaceRightFrag(new fragmen_cart());
-        }
+
+            */
 
 
     }

@@ -1,5 +1,7 @@
 package com.example.foodorder;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
@@ -10,9 +12,9 @@ public class CartViewModel extends ViewModel {
 
     public List<Cart> cart;
     public Customer customer;
-    public  CartViewModel() {
+
+    public CartViewModel() {
         cart = new ArrayList<>();
     }
-    }
 
-
+}
