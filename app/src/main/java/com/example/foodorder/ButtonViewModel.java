@@ -22,16 +22,34 @@ public class ButtonViewModel extends ViewModel
         this.fm = fm;
     }
 
-    public ButtonViewModel(Button but1, Button but2, FragmentManager fm)
+    public ButtonViewModel(Button but1, FragmentManager fm)
     {
         this.but1 = but1;
-        this.but2 = but2;
         this.fm = fm;
     }
     public void ReplaceFrag(Fragment frag)
     {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.mainFragment,frag);
+        ft.commit();
+    }
+
+    public void ReplaceLeftFrag(Fragment frag)
+    {
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.container_restaurant,frag);
+        ft.commit();
+    }
+    public void ReplaceCenterFrag(Fragment frag)
+    {
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.container_food,frag);
+        ft.commit();
+    }
+    public void ReplaceRightFrag(Fragment frag)
+    {
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.container_cart,frag);
         ft.commit();
     }
 

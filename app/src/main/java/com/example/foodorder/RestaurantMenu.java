@@ -129,7 +129,7 @@ public class RestaurantMenu extends Fragment {
                     {
                         return;
                     }
-
+                    // load menu from restaurant
                 }
             });
         }

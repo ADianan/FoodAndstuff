@@ -18,22 +18,16 @@ public class MainActivityTablet extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_tablet);
 
-        FrameLayout rvRestaurants = findViewById(R.id.container_restaurant2);
-        FrameLayout rvFoods = findViewById(R.id.container_food2);
-        FrameLayout rvCart = findViewById(R.id.container_cart2);
+        FrameLayout rvRestaurants = findViewById(R.id.container_restaurant);
+        FrameLayout rvFoods = findViewById(R.id.container_food);
+        FrameLayout rvCart = findViewById(R.id.container_cart);
 
         FragmentManager fm = getSupportFragmentManager();
         FrameLayoutViewModel flModel = new FrameLayoutViewModel(rvRestaurants,rvFoods,rvCart,fm);
         CartViewModel cModel = new CartViewModel();
-        Button btnHome = findViewById(R.id.btnHome);
-        btnHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startNewActivity();
-            }
-        });
 
         flModel.ReplaceRestaurantFrag(new RestaurantMenu());
+        flModel.ReplaceFoodFrag(new FoodMenu());
         flModel.ReplaceFoodFrag(new fragmen_cart());
     }
 

@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
         if(widthDp<600)
         {
-
             Button but1 = findViewById(R.id.button);
             Button but2 = findViewById(R.id.button2);
             Button but3 = findViewById(R.id.button3);
@@ -75,17 +74,20 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             Button but1 = findViewById(R.id.button);
-            Button but3 = findViewById(R.id.button3);
             FragmentManager fm = getSupportFragmentManager();
-            ButtonViewModel model = new ButtonViewModel(but1,but3, fm);
+            ButtonViewModel model = new ButtonViewModel(but1,fm);
+            model.ReplaceCenterFrag(new home());
 
-            model.ReplaceFrag(new home());
             but1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    startNewActivity();
+                    model.ReplaceCenterFrag(new home());
                 }
             });
+
+            model.ReplaceLeftFrag(new RestaurantMenu());
+            model.ReplaceCenterFrag(new home());
+            model.ReplaceRightFrag(new fragmen_cart());
         }
 
 

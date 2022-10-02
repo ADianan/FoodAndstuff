@@ -5,13 +5,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import com.example.foodorder.FoodSchema.FoodTable;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class FoodStore {
 
+
+public class FoodStore {
     private SQLiteDatabase db;
     public void load(Context context)
     {
@@ -23,8 +25,12 @@ public class FoodStore {
     {
         List<Food> foodList =  new ArrayList<>();
         String clause = "WHERE restaurant_id =" +"'" + restaurantName +"'";
-        Cursor cursor  =db.query(FoodTable.NAME,null,clause,null,null,null,null);
-        foodList = foodCursor(cursor);
+        try {
+            Cursor cursor = db.query(FoodTable.NAME, null, null, null, null, null, null);
+            foodList = foodCursor(cursor);
+        } catch(Exception e){
+            Exception caught = e;
+        }
         return foodList;
     }
     private List<Food> foodCursor(Cursor cursor)
@@ -44,6 +50,7 @@ public class FoodStore {
         }
         return foodList;
     }
+
     public List<Food>getHomeFood()
     {
         List<Food> foodList =  new ArrayList<>();
