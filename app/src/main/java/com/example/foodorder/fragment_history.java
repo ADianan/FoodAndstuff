@@ -134,7 +134,6 @@ public class fragment_history extends Fragment {
             holder.date.setText(histories.get(position).dateOfPurchase.toString());
             holder.amountofFood.setText(String.valueOf(amount));
             holder.price.setText(String.valueOf(price));
-            holder.historyfoodimage.setImageResource(food.getImage());
         }
 
         @Override
@@ -149,7 +148,6 @@ public class fragment_history extends Fragment {
         TextView date;
         TextView amountofFood;
         TextView price;
-        ImageView historyfoodimage;
 
         public HistoryHolder(@NonNull View itemView) {
             super(itemView);
@@ -158,7 +156,6 @@ public class fragment_history extends Fragment {
             date = itemView.findViewById(R.id.date);
             amountofFood = itemView.findViewById(R.id.amountofFood);
             price = itemView.findViewById(R.id.price);
-            historyfoodimage = itemView.findViewById(R.id.historyfoodimageam);
         }
 
     }
