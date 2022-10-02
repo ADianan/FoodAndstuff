@@ -18,7 +18,7 @@ public class HistoryStore {
     }
     public List<History>  getCustomerHistory(String userId)
     {
-        String clause = "WHERE user_id = ?";
+        String clause = "user_id = ?";
         String[] args = {userId};
         List<History> orderHistory = new ArrayList<>();
         Cursor cursor  =db.query(HistoryTable.NAME,null,clause,args,null,null,null);
