@@ -24,9 +24,10 @@ public class FoodStore {
     public List<Food>getFoodList(String restaurantName)
     {
         List<Food> foodList =  new ArrayList<>();
-        String clause = "WHERE restaurant_id =" +"'" + restaurantName +"'";
+        String clause = "restaurant_id = ?" ;
+        String[] args ={restaurantName} ;
         try {
-            Cursor cursor = db.query(FoodTable.NAME, null, null, null, null, null, null);
+            Cursor cursor = db.query(FoodTable.NAME, null, clause, args, null, null, null);
             foodList = foodCursor(cursor);
         } catch(Exception e){
             Exception caught = e;

@@ -103,14 +103,19 @@ public class fragmen_cart extends Fragment {
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                loginDialog log = new loginDialog();
+                log.customer(getActivity());
             }
         });
         history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ButtonViewModel model = new ButtonViewModel(getActivity().getSupportFragmentManager());
-                model.ReplaceFrag(new fragment_history(UUID.randomUUID().toString()));
+                CartViewModel cartViewModel = mutabaleCart.getMutableLiveData();
+                if(cartViewModel.customer !=null)
+                {
+                    ButtonViewModel model = new ButtonViewModel(getActivity().getSupportFragmentManager());
+                    model.ReplaceFrag(new fragment_history(UUID.randomUUID().toString()));
+                }
             }
         });
 
