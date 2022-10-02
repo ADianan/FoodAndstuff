@@ -1,5 +1,6 @@
 package com.example.foodorder;
 
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -91,7 +92,15 @@ public class fragment_history extends Fragment {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Configuration con = getActivity().getResources().getConfiguration();
+                ButtonViewModel model = new ButtonViewModel(getActivity().getSupportFragmentManager());
+                if(con.screenWidthDp< 600)
+                {
+                    model.ReplaceFrag(new fragmen_cart());
+                }
+                else{
+                    model.ReplaceRightFrag(new fragmen_cart());
+                }
             }
         });
         return view;
@@ -102,11 +111,8 @@ public class fragment_history extends Fragment {
         @RequiresApi(api = Build.VERSION_CODES.O)
         public AdapterHistory(List<History> historyList)
         {
-            int id =getResources().getIdentifier("angrybirds","drawable", getActivity().getPackageName());
-            String yo = "whatlahk";
-            History history = new History(RandomIDGen.orderID(),new Cart(new Food(yo,yo,yo,2,id),2),RandomIDGen.getTime());
-            this.histories = new ArrayList<>();
-            histories.add(history);
+
+            this.histories = historyList;
         }
         @NonNull
         @Override

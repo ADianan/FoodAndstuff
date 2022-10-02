@@ -1,6 +1,7 @@
 package com.example.foodorder;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -114,7 +115,15 @@ public class fragmen_cart extends Fragment {
                 if(cartViewModel.customer !=null)
                 {
                     ButtonViewModel model = new ButtonViewModel(getActivity().getSupportFragmentManager());
-                    model.ReplaceFrag(new fragment_history(UUID.randomUUID().toString()));
+                    Configuration con = getActivity().getResources().getConfiguration();
+                    if(con.screenWidthDp< 600)
+                    {
+                        model.ReplaceFrag(new fragment_history(cartViewModel.customer.getUserid()));
+                    }
+                    else
+                    {
+                        model.ReplaceRightFrag(new fragment_history(cartViewModel.customer.getUserid()));
+                    }
                 }
             }
         });

@@ -21,7 +21,6 @@ public class ButtonViewModel extends ViewModel
         this.but3 = but3;
         this.fm = fm;
     }
-
     public ButtonViewModel(Button but1, FragmentManager fm)
     {
         this.but1 = but1;
