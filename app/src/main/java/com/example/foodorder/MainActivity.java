@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -28,7 +29,7 @@ import java.util.Observer;
 
 public class MainActivity extends AppCompatActivity {
 
-    private  static boolean ADDTODATABASE = false;
+    private  static boolean ADDTODATABASE = true;
     //when adding new data please remove the old data sets
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,20 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     model.ReplaceFrag(new fragmen_cart());
+                }
+            });
+        }
+        else{
+            Button but1 = findViewById(R.id.button);
+            Button but3 = findViewById(R.id.button3);
+            FragmentManager fm = getSupportFragmentManager();
+            ButtonViewModel model = new ButtonViewModel(but1,but3, fm);
+
+            model.ReplaceFrag(new home());
+            but1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startNewActivity();
                 }
             });
         }
@@ -121,6 +136,11 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void startNewActivity(){
+        Intent intent = new Intent(this, MainActivityTablet.class);
+        startActivity(intent);
     }
 
 }
